@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 class HomeController extends Controller
 {
     /**
@@ -42,7 +43,21 @@ class HomeController extends Controller
       $user -> icon = $file;
       $user -> save();
 
-      $file = $image -> storeAs('icon', $file ,'public');
+      $fileStore = $image -> storeAs('icon', $file ,'public');
+
+      // dd($image,$name,$file,$user);
+
+      return redirect() -> back();
+
+    }
+
+    public function clearImg() {
+
+      $user = Auth::user();
+      $user -> icon = null;
+      $user -> save();
+
+      return redirect() -> back();
 
     }
 }

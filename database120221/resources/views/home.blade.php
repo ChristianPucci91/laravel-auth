@@ -21,7 +21,9 @@
 
                       <input type="file" class="form-control border-0" name="icon" value="">
 
-                      <input type="submit" class="mt-5" name="" value="Send image">
+                      <input type="submit" class="mt-5 btn btn-primary" name="" value="Send image"> <br>
+                      <a href="{{ route('clear-img') }}" class="mt-2 btn btn-danger">Clear icon</a>
+
 
                     </form>
                 </div>
@@ -31,10 +33,13 @@
 
                 <div class="card-body">
 
-                  <h4>User icon</h4>
+                  @if (Auth::user()-> icon)
 
-                  <img src="{{ asset('storage/icon/' . Auth::user() -> icon) }}" width="200px" height="50px"alt="">
+                    <h4>User icon</h4>
 
+                    <img src="{{ asset('storage/icon/' . Auth::user() -> icon) }}" width="200px" height="50px"alt="">
+
+                  @endif
 
                 </div>
             </div>
