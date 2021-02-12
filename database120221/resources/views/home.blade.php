@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    <form class="" action="{{ route('update-img')}}" method="post">
+                    <form class="" action="{{ route('update-img')}}" method="post" enctype="multipart/form-data">
 
                       @csrf
                       @method('post')

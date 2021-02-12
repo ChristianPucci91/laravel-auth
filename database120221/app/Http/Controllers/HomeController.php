@@ -26,6 +26,18 @@ class HomeController extends Controller
         return view('home');
     }
     public function updateImg(Request $request) {
-      dd($request -> all());
+
+      $request -> validate([
+         'icon' => 'required|file'
+      ]);
+
+      $image = $request -> file('icon');
+
+      $ext = $image -> getClientOriginalExtension();
+      $name = rand(100000,999999). '_' . time();
+      $file = $name . '.'. $ext;
+
+      $file = $image -> storeAs('icon', $file ,'public');
+      dd($image,$ext, $name,$file);
     }
 }
