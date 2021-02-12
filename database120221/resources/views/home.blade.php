@@ -26,6 +26,18 @@
                     </form>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-header">Icon</div>
+
+                <div class="card-body">
+
+                  <h4>User icon</h4>
+
+                  <img src="{{ asset('storage/icon/' . Auth::user() -> icon) }}" width="200px" height="50px"alt="">
+
+
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -37,7 +38,11 @@ class HomeController extends Controller
       $name = rand(100000,999999). '_' . time();
       $file = $name . '.'. $ext;
 
+      $user = Auth::user();
+      $user -> icon = $file;
+      $user -> save();
+
       $file = $image -> storeAs('icon', $file ,'public');
-      dd($image,$ext, $name,$file);
+
     }
 }
