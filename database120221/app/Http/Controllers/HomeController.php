@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 
 class HomeController extends Controller
@@ -33,6 +34,8 @@ class HomeController extends Controller
          'icon' => 'required|file'
       ]);
 
+      $this -> deleteImg();
+
       $image = $request -> file('icon');
 
       $ext = $image -> getClientOriginalExtension();
@@ -53,11 +56,26 @@ class HomeController extends Controller
 
     public function clearImg() {
 
+      $this -> deleteImg();
+
       $user = Auth::user();
       $user -> icon = null;
       $user -> save();
 
       return redirect() -> back();
 
+    }
+    public function deleteImg() {
+
+      $user = Auth::user();
+
+      try {
+
+        $fileName = $user -> icon;
+
+        $file = storage_path('app/public/icon/' . $fileName);
+        File::delete($file);
+
+      } catch (\Exception $e) {}
     }
 }
